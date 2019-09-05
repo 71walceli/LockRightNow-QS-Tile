@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO Improve strings as per this article:
+    https://stackoverflow.com/questions/4746058/reference-one-string-from-another-string-in-strings-xml-->
+<resources>
+    <string name="app_name">Bloque&#769;ame</string>
+    <string name="tile_inactive">Activar %s</string>
+    <string name="androidDialog_disableDevAdmin">Deshabiliitar este administrador del dipsositivo desactivara&#769; el ajuste ra&#769;pido de %s. ¿desea continuar?</string>
+    <string name="toast_devAdminDisabled">Se ha DESACtIVADO el administrador de dispositivo</string>
+    <string name="toast_dev_admin_on">Se ha ACtIVADO el administrador de dispositivo</string>
+    <string name="deviceLocked">Bloqueado</string>
+    <string name="admin_receiver">Receptor</string>
+    <string name="admin_description">Permite que el control funcione.</string>
+</resources>
