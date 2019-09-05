@@ -40,6 +40,7 @@ public class LockTileService extends TileService {
             startActivity(intent);
         }
         Log.i(getClass().getSimpleName(),"Tile clicked");
+        sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         update();
     }
 
@@ -61,7 +62,7 @@ public class LockTileService extends TileService {
                     getResources().getString(R.string.app_name)));
             tile.setIcon(Icon.createWithResource(this, R.drawable.ic_lock_open_black_24dp));
         }
-        sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+
         tile.updateTile();
 
         Log.i(getClass().getSimpleName(),"isAdminActive = " + isAdminActive + "; isisLocked() " +
