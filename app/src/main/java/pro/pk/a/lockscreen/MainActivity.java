@@ -10,8 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     static final int RESULT_ENABLE = 1;
@@ -30,15 +28,11 @@ public class MainActivity extends AppCompatActivity {
                 Context.DEVICE_POLICY_SERVICE);
         activityManager = (ActivityManager)getSystemService(
                 Context.ACTIVITY_SERVICE);
-        compName = new ComponentName(this, MyAdmin.class);
+        compName = new ComponentName(this, AdminReceiver.class);
 
-        if (getIntent().hasExtra(KEY_ENAMBE_ADMIN)) {
-            String enableAdmin = getIntent().getExtras().getString(KEY_ENAMBE_ADMIN);;
-            if (enableAdmin != null) {
-                enableAdmin();
-                finish();
-            }
-        }
+
+        enableAdmin();
+        finish();
 
         setContentView(R.layout.activity_main);
     }
