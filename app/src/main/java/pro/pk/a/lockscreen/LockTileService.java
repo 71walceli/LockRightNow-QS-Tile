@@ -4,6 +4,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
@@ -21,11 +22,9 @@ public class LockTileService extends TileService {
 
     @Override
     public void onStartListening() {
-        super.onStartListening();
-
         deviceManger = (DevicePolicyManager) getSystemService(Context
                 .DEVICE_POLICY_SERVICE);
-        compName = new ComponentName(this, MyAdmin.class);
+        compName = new ComponentName(this, AdminReceiver.class);
         isAdminActive = deviceManger.isAdminActive(compName);
 
         Log.i(getClass().getSimpleName(),getClass().getSimpleName() + " started listening");
@@ -34,12 +33,9 @@ public class LockTileService extends TileService {
 
     @Override
     public void onClick() {
-        super.onClick();
-
         if (isAdminActive) deviceManger.lockNow();
         else {
             Intent intent = new Intent(this, MainActivity.class)
-                    .putExtra(MainActivity.KEY_ENAMBE_ADMIN, MainActivity.KEY_ENAMBE_ADMIN)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
@@ -51,16 +47,24 @@ public class LockTileService extends TileService {
         Tile tile = getQsTile();
 
         isAdminActive = deviceManger.isAdminActive(compName);
-        if (isAdminActive) {
+        if (isLocked()) {
+            tile.setState(Tile.STATE_UNAVAILABLE);
+            tile.setLabel(getResources().getString(R.string.deviceLocked));
+            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_lock_black_24dp));
+        } else if (isAdminActive) {
             tile.setState(Tile.STATE_ACTIVE);
             tile.setLabel(getResources().getString(R.string.app_name));
+            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_lock_black_24dp));
         } else {
             tile.setState(Tile.STATE_INACTIVE);
             tile.setLabel(String.format(getResources().getString(R.string.tile_inactive),
                     getResources().getString(R.string.app_name)));
+            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_lock_open_black_24dp));
         }
+        sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         tile.updateTile();
 
-        Log.i(getClass().getSimpleName(),"isAdminActive = " + isAdminActive);
+        Log.i(getClass().getSimpleName(),"isAdminActive = " + isAdminActive + "; isisLocked() " +
+                "= " + isLocked());
     }
 }

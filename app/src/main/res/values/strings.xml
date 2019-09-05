@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">LockRightNow!</string>
+    <string name="app_name">Lock Right Now!</string>
     <string name="admin_receiver">Admin Receiver</string>
     <string name="admin_description">Device administrator permission needed to lock screen immediately</string>
     <string name="tile_inactive">Enable %s</string>
+    <string name="toast_dev_admin_on">Device Admin has been enabled</string>
+    <string name="androidDialog_disableDevAdmin">Disabling %1$s will disable the tile. Are you sure you want to disable $1$s?</string>
+    <string name="toast_devAdminDisabled">Sample Device Admin: disabled</string>
+    <string name="deviceLocked">Device locked</string>
 </resources>
