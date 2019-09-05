@@ -41,6 +41,7 @@ public class LockTileService extends TileService {
         }
         Log.i(getClass().getSimpleName(),"Tile clicked");
         sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+
         update();
     }
 

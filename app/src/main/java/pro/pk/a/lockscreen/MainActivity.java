@@ -30,20 +30,18 @@ public class MainActivity extends AppCompatActivity {
                 Context.ACTIVITY_SERVICE);
         compName = new ComponentName(this, AdminReceiver.class);
 
-
         enableAdmin();
+        // TODO Display some warning if permission is not granted
         finish();
 
         setContentView(R.layout.activity_main);
     }
 
     public void enableAdmin() {
-        Intent intent = new Intent(DevicePolicyManager
-                .ACTION_ADD_DEVICE_ADMIN);
-        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
-                compName);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                "Additional text explaining why this needs to be added.");
+        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN)
+                .putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, compName)
+                .putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                        "Additional text explaining why this needs to be added.");
         startActivityForResult(intent, RESULT_ENABLE);
     }
 
