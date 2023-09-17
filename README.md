@@ -12,7 +12,9 @@ It is useful specially for those who nve set up their Android lock settings to l
 3. Click on the newly-added tile.
 4. Android will ask you to <a href="#permissions">enalbe the device admin</a>. Enable it.
 5. After enabling device admin, tap again on the tile.
-6. If vevece locks, you're all set! Enjoy!
+6. If decive locks, you're all set!
+
+Enjoy!
 
 <a anchor="building" />
 
